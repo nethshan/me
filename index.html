@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hilmi Nethshan — Portfolio</title>
+  <meta name="description" content="Hilmi Nethshan — HND Computing Student | Aspiring Software Developer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-papmS+12WujbLIlQwld6tyquAkqcnPr8nGgb0nKgprM1zHuKibVL2FI1LMnqFz8ZBtkhJ8j9WuUcmA3ZGZfQDQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    :root {
+      --bg: #10182a; /* Deep dark navy/blue as primary bg */
+      --container-bg: #131c2e; /* Slightly lighter for container */
+      --card: rgba(255,255,255,0.10); /* Light glassy effect for cards/asides */
+      --glass-blur: 18px;
+      --muted: #b2bcd4;
+      --accent: #50e6fa; /* Vibrant neon blue */
+      --radius: 18px;
+      --glass-border: 1.5px solid #68e8fc44;
+      --accent-glow: 0 4px 36px #27cdfa77;
+      --accent-hover: #51ffea;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:#eef6ff;line-height:1.5;position:relative;z-index:0;}
+    body::before{
+      content:'';position:fixed;z-index:-1;inset:0;
+      background:radial-gradient(circle at 70% 20%, #0c324e55 0, transparent 55%),
+                 linear-gradient(120deg, #162241cc 0, #192135bb 22%, #24355e99 85%, #0c2f50 100%);
+      opacity:0.72;
+      animation: gradientMove 14s linear infinite alternate;
+    }
+    @keyframes gradientMove {
+      0%{background-position: 0 0, 0 0;}
+      100%{background-position: 80px 40px, 100px -40px;}
+    }
+    .container{max-width:1000px;margin:36px auto;padding:26px;background:var(--container-bg);border-radius:var(--radius);box-shadow:0 8px 50px #0005;}
+    header{display:flex;gap:20px;align-items:center}
+    .avatar{width:120px;height:120px;border-radius:50%;background:linear-gradient(135deg,#202c4b,#131a2b);display:flex;align-items:center;justify-content:center;font-weight:700;color:#49fbff;font-size:28px;box-shadow:0 4px 20px #25e9f544,0 1.5px 4px #00bfc988;border:3px solid #141a2acc;overflow:hidden;transition:box-shadow 0.25s,transform 0.25s;}
+    .avatar:hover{box-shadow:0 8px 36px 0 #48caff88,0 2px 12px #32bea122;transform:scale(1.045);}
+    h1{margin:0;font-size:26px;color:#fff;font-weight:900}
+    .tag{color:var(--muted);margin-top:6px}
+    .actions{margin-left:auto;display:flex;gap:10px}
+    a.button{display:inline-block;padding:11px 18px;border-radius:14px;background:linear-gradient(100deg,#232b52 10%,#50e6fa 90%);box-shadow:0 2px 16px 0 #50e6fa55, 0 0px 0 #0b3b6600;border:2px solid transparent;outline:none;transition:box-shadow 300ms cubic-bezier(.22,1,.36,1),background 250ms cubic-bezier(.22,1,.36,1),border 200ms cubic-bezier(.22,1,.36,1),color 170ms cubic-bezier(.22,1,.36,1),transform 0.2s;color:#fff;font-weight:700;position:relative;overflow:hidden;letter-spacing:0.5px;text-shadow:0 1px 5px #27cdfa88;}
+    a.button:hover,a.button:focus{background:linear-gradient(100deg,#6cfdeb 10%,#318ac780);color:#fff;box-shadow:0 0 24px 4px #3cf4e199,0 6px 32px #51e6fbba;border-color:#00ffe066;transform:scale(1.038);text-decoration:none;}
+    a.button[style*="#25D366"] {background:linear-gradient(100deg,#1afa7a 10%,#25D366 90%);color:#fff !important;box-shadow:0 2px 14px 2px #25D36664;}
+    a.button[style*="#25D366"]:hover,a.button[style*="#25D366"]:focus {background:linear-gradient(100deg,#4fffbe 10%,#25d366 90%);box-shadow:0 0 20px 2px #25d366cc,0 8px 32px #1afa7a99;border-color:#23faab66;}
+    a.button[style*="#0b76ef"] {background:linear-gradient(100deg,#3088ff 0%,#50e6fa 100%);color:#fff !important;box-shadow:0 2px 10px 1px #50e6fa45;}
+    a.button[style*="#0b76ef"]:hover,a.button[style*="#0b76ef"]:focus {background:linear-gradient(100deg,#63bdfe 0%,#318ac7 100%);box-shadow:0 0 15px 5px #50e6fa99,0 10px 36px #27cdfa44;border-color:#2e9cff80;}
+    main{margin-top:28px;display:grid;grid-template-columns:1fr 320px;gap:20px}
+    .card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:0 6px 18px #18e1fa24;transition:transform 0.18s,box-shadow 0.18s;border:var(--glass-border);backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));}
+    .card:hover{transform:translateY(-4px) scale(1.025);box-shadow:0 10px 38px 0 #51e6fa55,0 2px 14px #50e6fa33;}
+    .section-title{font-weight:700;margin-bottom:12px;color:var(--accent);letter-spacing:1px;}
+    .bio{color:var(--muted);margin-bottom:12px;}
+    .skills{display:flex;flex-wrap:wrap;gap:8px}
+    .skill{background:#19213a88;padding:8px 10px;border-radius:999px;font-size:13px;color:#eef6ff;border:1px solid #4ed7ff1a;backdrop-filter:blur(3px);}
+    /* Skills groups */
+    .skills-groups{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px}
+    .skills-group{background:linear-gradient(100deg,#0f1627aa,#111a2e88);border:1px solid #4ed7ff14;border-radius:12px;padding:12px}
+    .skills-subtitle{color:var(--accent);font-weight:700;margin-bottom:8px;font-size:14px;letter-spacing:.3px}
+    .skills-note{font-size:12px;color:var(--muted);margin-left:6px}
+    .projects{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .proj{padding:12px;border-radius:10px;background:linear-gradient(100deg,#141c2c,#19203688);border:1px solid rgba(80,230,250,0.05)}
+    .meta{color:var(--muted);font-size:13px;margin-top:8px}
+    aside .contact-list{display:flex;flex-direction:column;gap:8px}
+    .contact-item{display:flex;gap:10px;align-items:center;color:var(--muted);font-weight:500;}
+    .contact-item a{color:var(--accent);text-decoration:none;font-weight:600}
+    .timeline{display:flex;flex-direction:column;gap:8px}
+    footer{text-align:center;color:var(--muted);margin-top:24px;font-size:13px}
+    @media (max-width:880px){main{grid-template-columns:1fr;}.projects{grid-template-columns:1fr}}
+    @media (max-width:880px){.skills-groups{grid-template-columns:1fr}}
+    @media (max-width:600px){
+      .container {padding: 7vw 2vw; margin: 10px auto;}
+      header {flex-direction: column; align-items: flex-start; gap: 12px;}
+      .avatar {width: 80px; height: 80px; font-size: 20px;}
+      h1 {font-size: 21px;}
+      .section-title {font-size: 16px;}
+      .bio {font-size: 15px;}
+      .card {padding: 10px;}
+      main {margin-top: 14px; gap: 8px;}
+      .skills {gap: 5px;}
+      .projects {gap: 7px;}
+      .proj {padding: 7px;}
+      .actions {width: 100%; flex-direction: column; gap: 6px; margin-left: 0;}
+      a.button {width: 100%; font-size: 14px; padding: 9px 0; text-align: center;}
+      aside .card {margin-top: 12px;}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="avatar" aria-hidden="true" style="padding:0">
+        <img src="profile.jpg.jpg" alt="Profile picture of Hilmi Nethshan" style="width:100%;height:100%;object-fit:cover;border-radius:50%;border:2px solid #e6f0ff;box-shadow:0 2px 10px rgba(14,20,35,0.10);background:#f7f9fb;" onerror="this.style.display='none';this.parentNode.innerHTML='HN'" />
+      </div>
+      <div>
+        <h1>Hilmi Nethshan</h1>
+        <div class="typewriter" id="typewriter"></div>
+      </div>
+      <div class="actions">
+        <a class="button" href="mailto:onlinehilmi2023@gmail.com">Contact</a>
+        <a class="button" href="https://drive.google.com/file/d/12ioleyFY2n4vp51FMwiLbz3FlbjPFAEN/view?usp=sharing" target="_blank" rel="noopener" style="background:#0b76ef;color:#fff"><svg style="vertical-align:middle;margin-bottom:3px;margin-right:4px" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 16V4M12 16l-4-4M12 16l4-4M4 20h16" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16.59 7.41A2 2 0 0 0 15.17 7H8.83a2 2 0 0 0-1.41.59l-4.3 4.3a1 1 0 0 0 .7 1.71h16.16a1 1 0 0 0 .7-1.71l-4.29-4.3z" fill="#fff"/></svg>Download CV</a>
+        <a class="button" href="https://wa.me/94750170825" target="_blank" rel="noopener" style="background:#25D366;color:#fff;display:flex;align-items:center;gap:7px;"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <div class="card">
+          <div class="section-title">About</div>
+          <div class="bio">I am a HND Computing student at Saegis Campus with a strong interest in software development, databases and networking. I build clean, maintainable web apps and enjoy learning new technologies (Java, Python, SQL, HTML/CSS).</div>
+        </div>
+
+        <div class="card" style="margin-top:18px">
+          <div class="section-title">Skills</div>
+          <div class="skills-groups">
+            <div class="skills-group">
+              <div class="skills-subtitle">Languages <span class="skills-note">basic to intermediate</span></div>
+              <div class="skills">
+                <div class="skill">Java</div>
+                <div class="skill">Python</div>
+                <div class="skill">HTML</div>
+                <div class="skill">CSS</div>
+              </div>
+            </div>
+            <div class="skills-group">
+              <div class="skills-subtitle">Frameworks</div>
+              <div class="skills">
+                <div class="skill">Pandas</div>
+                <div class="skill">NumPy</div>
+              </div>
+            </div>
+            <div class="skills-group">
+              <div class="skills-subtitle">Tools</div>
+              <div class="skills">
+                <div class="skill">Power BI</div>
+                <div class="skill">PowerPoint</div>
+                <div class="skill">Photoshop</div>
+              </div>
+            </div>
+            <div class="skills-group">
+              <div class="skills-subtitle">Platforms</div>
+              <div class="skills">
+                <div class="skill">Eclipse</div>
+                <div class="skill">VS Code</div>
+                <div class="skill">PyCharm</div>
+              </div>
+            </div>
+            <div class="skills-group" style="grid-column:1/-1">
+              <div class="skills-subtitle">Soft Skills</div>
+              <div class="skills">
+                <div class="skill">Problem-Solving</div>
+                <div class="skill">Time Management</div>
+                <div class="skill">Creativity</div>
+                <div class="skill">Self-Learning</div>
+                <div class="skill">Communication</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="portfolio" class="card" style="margin-top:18px">
+          <div class="section-title">Selected Projects</div>
+          <div class="projects">
+            <div class="proj">
+              <strong>Health is Wealth — Pharmacy DB</strong>
+              <div class="meta">Relational DB design, SQL queries, XAMPP setup.</div>
+            </div>
+            <div class="proj">
+              <strong>Future Furniture — Network Diagram</strong>
+              <div class="meta">Network planning and topology for a multi-floor shop.</div>
+            </div>
+            <div class="proj">
+              <strong>North Sussex Judo — Fee Calculator</strong>
+              <div class="meta">Java program to manage training fees and athlete summaries.</div>
+            </div>
+            <div class="proj">
+              <strong>Car Data Project</strong>
+              <div class="meta">This repository contains a data-driven analysis using a car sales dataset from Car Dekho. It includes the raw CSV data, a Power BI dashboard (Dashboard.pbix).</div>
+            </div>
+            <div class="proj">
+              <strong>EcoBikeRental</strong>
+              <div class="meta">I created the front-end web interface for the EcoBikeRental system.</div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <aside>
+        <div class="card">
+          <div class="section-title">Contact</div>
+          <div class="contact-list">
+            <div class="contact-item">📍 Colombo, Sri Lanka</div>
+            <div class="contact-item">📧 <a href="mailto:onlinehilmi2023@gmail.com">onlinehilmi2023@gmail.com</a></div>
+            <div class="contact-item"><i class="fa-brands fa-linkedin"></i> <a href="https://www.linkedin.com/in/hilmi-nethshan-8819a5342/" target="_blank" rel="noreferrer">LinkedIn</a></div>
+            <div class="contact-item"><i class="fa-brands fa-github"></i> <a href="https://github.com/nethshan" target="_blank" rel="noreferrer">GitHub</a></div>
+            <div class="contact-item whatsapp-blink"><i class="fa-brands fa-whatsapp" style="color:#25D366"></i> <a href="https://wa.me/94750170825" target="_blank" rel="noreferrer" style="display:flex;align-items:center"><span style="margin-left:7px;">+94 75 017 0825</span></a></div>
+          </div>
+        </div>
+        <div style="height:18px"></div>
+        <div class="card">
+          <div class="section-title">Education</div>
+          <div class="meta"><strong>BTEC Higher National Diploma (HND)</strong> <span style="float:right">2024–present</span><br/>Software Engineering (in Progress)<br/>Saegis Campus, Nugegoda
+            <hr style="margin:10px 0;opacity:.15"/>
+            <strong>G.C.E. Advanced Level (A/L) — Technology Stream</strong> <span style="float:right">2021–2023</span><br/>
+            Lumbini College, Colombo 05<br/>Passed with 2C and 2S.
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      <div>Made with care • Hilmi Nethshan</div>
+    </footer>
+  </div>
+
+  <script>
+    // Typewriter effect for tagline
+    const texts = ["Software Engineer","Code • Create • Inspire","Let's Build Something Great!"];
+    const el = document.getElementById('typewriter');
+    let idx=0, charIdx=0, typingF=1;
+    function typeLoop(){
+      if(!el)return;
+      if(typingF===1){
+        if(charIdx<=texts[idx].length){el.textContent = texts[idx].slice(0,charIdx)+(charIdx%2 ? '|' : '');charIdx++;setTimeout(typeLoop,42);}
+        else{typingF=0;setTimeout(typeLoop,1600);}
+      } else {
+        if(charIdx>0){el.textContent = texts[idx].slice(0,charIdx-1)+(charIdx%2 ? '|' : '');charIdx--;setTimeout(typeLoop,24);}
+        else{typingF=1;idx=(idx+1)%texts.length;setTimeout(typeLoop,900);}
+      }
+    }
+    typeLoop();
+  </script>
+</body>
+</html>
